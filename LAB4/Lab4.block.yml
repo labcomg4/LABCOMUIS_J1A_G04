@@ -1,0 +1,45 @@
+id: Lab4
+label: QT GUI envolvente compleja PM J1A
+category: '[ModulosJ1AG4]'
+flags: need_qt_gui
+
+parameters:
+-   id: Ac
+    label: amplitud de portadora
+    dtype: real
+    default: '0.1'
+    hide: none
+-   id: Kp
+    label: coeficiente de modolacion PM
+    dtype: real
+    default: '1'
+    hide: none
+-   id: gui_hint
+    label: GUI Hint
+    dtype: gui_hint
+    hide: part
+
+inputs:
+-   label: in
+    dtype: float
+    vlen: 1
+
+outputs:
+-   label: out
+    dtype: complex
+    vlen: 1
+
+templates:
+    imports: 'from Lab4 import Lab4  # grc-generated hier_block'
+    make: "Lab4(\n    Ac=${ Ac },\n    Kp=${ Kp },\n)\n<% win = 'self.%s'%id %>\n\
+        ${ gui_hint() % win }"
+    callbacks:
+    - set_Ac(${ Ac })
+    - set_Kp(${ Kp })
+
+documentation: 'Adriana_La_Rotta_Jairo_Sanchez
+
+    /home/labcom/Escritorio/J1A/LAB4/Lab4.py'
+grc_source: /home/labcom/Escritorio/J1A/LAB4/Lab4.grc
+
+file_format: 1
